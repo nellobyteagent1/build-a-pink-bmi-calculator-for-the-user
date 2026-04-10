@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMI Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+  <header class="header">
+    <div class="header-label">Wellness Tool</div>
+    <h1>Body Mass <em>Index</em></h1>
+  </header>
+
+  <div class="card">
+    <!-- Unit Toggle -->
+    <div class="unit-toggle" id="unitToggle">
+      <button class="unit-btn active" data-unit="metric" onclick="setUnit('metric')">Metric</button>
+      <button class="unit-btn" data-unit="imperial" onclick="setUnit('imperial')">Imperial</button>
+    </div>
+
+    <!-- Height -->
+    <div class="section-label">Height</div>
+    <div class="input-group" id="heightGroup">
+      <div class="input-row" id="heightMetric">
+        <div class="input-wrapper">
+          <input type="number" id="heightCm" placeholder="170" min="50" max="300" step="0.1" inputmode="decimal">
+          <span class="suffix">cm</span>
+        </div>
+      </div>
+      <div class="input-row" id="heightImperial" style="display:none">
+        <div class="input-wrapper">
+          <input type="number" id="heightFt" placeholder="5" min="1" max="9" step="1" inputmode="numeric">
+          <span class="suffix">ft</span>
+        </div>
+        <div class="input-wrapper">
+          <input type="number" id="heightIn" placeholder="7" min="0" max="11" step="0.1" inputmode="decimal">
+          <span class="suffix">in</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Weight -->
+    <div class="section-label">Weight</div>
+    <div class="input-group" id="weightGroup">
+      <div class="input-row" id="weightMetric">
+        <div class="input-wrapper">
+          <input type="number" id="weightKg" placeholder="65" min="10" max="500" step="0.1" inputmode="decimal">
+          <span class="suffix">kg</span>
+        </div>
+      </div>
+      <div class="input-row" id="weightImperial" style="display:none">
+        <div class="input-wrapper">
+          <input type="number" id="weightLbs" placeholder="143" min="20" max="1100" step="0.1" inputmode="decimal">
+          <span class="suffix">lbs</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Calculate Button -->
+    <button class="calc-btn" onclick="calculate()">
+      <span>Calculate BMI</span>
+    </button>
+
+    <!-- Result -->
+    <div class="result-panel" id="resultPanel">
+      <div class="divider"></div>
+
+      <div class="result-number-row">
+        <span class="result-bmi" id="resultBmi">0.0</span>
+      </div>
+
+      <div class="result-category-wrapper">
+        <div class="result-category" id="resultCategory">Normal</div>
+      </div>
+
+      <!-- Scale -->
+      <div class="bmi-scale">
+        <div class="scale-bar">
+          <div class="scale-marker" id="scaleMarker" style="left: 0%"></div>
+        </div>
+        <div class="scale-labels">
+          <span>15</span>
+          <span>18.5</span>
+          <span>25</span>
+          <span>30</span>
+          <span>40</span>
+        </div>
+      </div>
+
+      <!-- Band Info -->
+      <div class="band-info">
+        <div class="band-item" id="bandUnderweight">
+          <div class="band-dot underweight"></div>
+          <div class="band-text">
+            <strong>Underweight</strong>
+            &lt; 18.5
+          </div>
+        </div>
+        <div class="band-item" id="bandNormal">
+          <div class="band-dot normal"></div>
+          <div class="band-text">
+            <strong>Normal</strong>
+            18.5 &ndash; 24.9
+          </div>
+        </div>
+        <div class="band-item" id="bandOverweight">
+          <div class="band-dot overweight"></div>
+          <div class="band-text">
+            <strong>Overweight</strong>
+            25 &ndash; 29.9
+          </div>
+        </div>
+        <div class="band-item" id="bandObese">
+          <div class="band-dot obese"></div>
+          <div class="band-text">
+            <strong>Obese</strong>
+            &ge; 30
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    BMI is a screening tool, not a diagnostic measure.
+  </div>
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
